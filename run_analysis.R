@@ -2,8 +2,8 @@
 
 # This R script does the following:
 
-# 1. Merges the training and the test sets to create one data set.
-
+#### 1. Merges the training and the test sets to create one data set.
+# create 'x' data set
 tmp1 <- read.table("train/X_train.txt")
 tmp2 <- read.table("test/X_test.txt")
 X <- rbind(tmp1, tmp2)
@@ -12,14 +12,18 @@ tmp1 <- read.table("train/subject_train.txt")
 tmp2 <- read.table("test/subject_test.txt")
 S <- rbind(tmp1, tmp2)
 
+# create 'y' data set
 tmp1 <- read.table("train/y_train.txt")
 tmp2 <- read.table("test/y_test.txt")
 Y <- rbind(tmp1, tmp2)
 
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
+
 features <- read.table("features.txt")
+# get only columns with mean() or std() in their names
 indices_of_good_features <- grep("-mean\\(\\)|-std\\(\\)", features[, 2])
+# subset the desired columns
 X <- X[, indices_of_good_features]
 names(X) <- features[indices_of_good_features, 2]
 names(X) <- gsub("\\(|\\)", "", names(X))
@@ -29,7 +33,9 @@ names(X) <- tolower(names(X))
 
 activities <- read.table("activity_labels.txt")
 activities[, 2] = gsub("_", "", tolower(as.character(activities[, 2])))
+# update values with right activity names
 Y[,1] = activities[Y[,1], 2]
+# Colomn name
 names(Y) <- "activity"
 
 # 4. Appropriately labels the data set with descriptive activity names.
@@ -45,7 +51,7 @@ numSubjects = length(unique(S)[,1])
 numActivities = length(activities[,1])
 numCols = dim(cleaned)[2]
 result = cleaned[1:(numSubjects*numActivities), ]
-
+# for each activity and each subject
 row = 1
 for (s in 1:numSubjects) {
     for (a in 1:numActivities) {
