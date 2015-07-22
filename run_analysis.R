@@ -1,8 +1,5 @@
-# Source of data for this project: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
-# This R script does the following:
-
-#### 1. Merges the training and the test sets to create one data set.
+# 1. Merges the training and the test sets to create one data set.
 # create 'x' data set
 tmp1 <- read.table("train/X_train.txt")
 tmp2 <- read.table("test/X_test.txt")
