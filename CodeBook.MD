@@ -23,7 +23,7 @@ body motion components, was separated using a Butterworth low-pass filter into b
 force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. 
 From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
 
-
+Variaables used:
 
 x_train, y_train, x_test, y_test, subject_train and subject_test --> contain the data from the downloaded files.
 features contains the correct names for the x_data dataset, which are applied to the column names stored in mean_and_std_features, a numeric vector used to extract the desired data.
@@ -31,3 +31,11 @@ A similar approach is taken with activity names through the activities variable.
 x_data, y_data and subject_data merge the previous datasets to further analysis.
 all_data merges x_data, y_data and subject_data in a big dataset.
 Finally, averages_data contains the relevant averages which will be later stored in a .txt file. ddply() from the plyr package is used to apply colMeans() and ease the development.
+
+The R script run_analysis.R does the following.
+
+Merges the training and the test sets to create one data set.
+Extracts only the measurements on the mean and standard deviation for each measurement.
+Uses descriptive activity names to name the activities in the data set
+Appropriately labels the data set with descriptive activity names.
+Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
